@@ -34,7 +34,7 @@ const LoginForm = () => {
             <input value={formData.password} onChange={onChange} type="password" name="password" placeholder="password"/>
           </div>
         </div>
-        <p>Not registerd? <a href="/register"  className='link'> Register here!</a></p>
+        <p>Not registerd? <a href="/register" className='link'> Register here!</a></p>
       </div>
       <div className="footer">
         <button type="button" className="btn">Login</button>
