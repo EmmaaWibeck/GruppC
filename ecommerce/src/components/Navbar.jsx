@@ -1,8 +1,13 @@
 import { Link, NavLink } from 'react-router-dom'
+// import { useSelector } from 'react-redux'
+
 
 const Navbar = () => {
+
+  // const totalQuantity = useSelector(state => state.cartReducer.totalQuantity)
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-light">
+    <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light">
       {/* <!-- Container wrapper start --> */}
       <div className="container-fluid">
         {/* <!-- Toggle button --> */}
@@ -18,7 +23,7 @@ const Navbar = () => {
           <i className="fas fa-bars"></i>
         </button>
     
-        {/* <!-- Collapsible wrapper start --> */}
+        {/* <!-- Collapsible wrapper --> */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           {/* <!-- Navbar brand --> */}
             <Link to="/" className='navbar-brand mt-2 mt-lg-0'>LOGO</Link>
@@ -32,41 +37,34 @@ const Navbar = () => {
           {/* <!-- Left links end --> */}
         </div>
 
-        {/* <!-- Collapsible wrapper start --> */}
         {/* <!-- Right elements start --> */}
+        {/* Jockes code from lession 9, start*/}
         <div className="d-flex align-items-center">
-          {/* <!-- Icon --> */}
-          <Link to="/" className="text-reset me-3">
-            <i className="fas fa-shopping-cart"></i>
-          </Link>
-          {/* <!-- Avatar --> */}
+
           <div className="dropdown">
-            <Link
-              to="/"
-              className="dropdown-toggle d-flex align-items-center hidden-arrow"
-              id="navbarDropdownMenuAvatar"
+            <span
+              className="text-reset me-3 dropdown-toggle hidden-arrow"
+              id="navbarDropdownMenuLink"
               role="button"
               data-mdb-toggle="dropdown"
               aria-expanded="false"
             >
-              <img
-                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                className="rounded-circle"
-                height="25"
-                alt="Black and White Portrait of a Man"
-                loading="lazy"
-              />
-            </Link>
+              <i className="fas fa-shopping-cart"></i>
+              {/* {totalQuantity >= 1 &&  */}
+              <span className="badge rounded-pill badge-notification bg-danger">
+                {/* {totalQuantity} */}
+                1</span>
+                {/* } */}
+            </span>
             <ul
-              className="dropdown-menu dropdown-menu-end"
-              aria-labelledby="navbarDropdownMenuAvatar"
+              className="dropdown-menu dropdown-menu-end shopping-cart"
+              aria-labelledby="navbarDropdownMenuLink"
             >
-              <li><NavLink to="/" className="dropdown-item">My profile</NavLink></li>
-              <li><NavLink to="/" className="dropdown-item">Settings</NavLink></li>
-              <li><NavLink to="/" className="dropdown-item">Logout</NavLink></li>
+                ADD SHOPPINGCART COMPONENT HERE
             </ul>
           </div>
         </div>
+        {/* Jockes code from lession 9, end*/}
         {/* <!-- Right elements end --> */}
       </div>
       {/* <!-- Container wrapper end --> */}
