@@ -1,10 +1,12 @@
+import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-// import { useSelector } from 'react-redux'
+import ShoppingCart from './shoppingCart/ShoppingCart'
+import { useSelector } from 'react-redux'
 
 
 const Navbar = () => {
 
-  // const totalQuantity = useSelector(state => state.cartReducer.totalQuantity)
+  const totalQuantity = useSelector(state => state.cartReducer.totalQuantity)
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light">
@@ -30,6 +32,7 @@ const Navbar = () => {
           {/* <!-- Left links start --> */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li><NavLink to="/" className="nav-item nav-link p-1">Home</NavLink></li>
+            <li><NavLink to="/products" className="nav-item nav-link p-1">Products</NavLink></li>
             <li><NavLink to="/login" className="nav-item nav-link p-1">Login</NavLink></li>
             <li><NavLink to="/register" className="nav-item nav-link p-1">Register</NavLink></li>
             <li><NavLink to="/admin" className="nav-item nav-link p-1">Admin</NavLink></li>
@@ -50,17 +53,16 @@ const Navbar = () => {
               aria-expanded="false"
             >
               <i className="fas fa-shopping-cart"></i>
-              {/* {totalQuantity >= 1 &&  */}
-              <span className="badge rounded-pill badge-notification bg-danger">
-                {/* {totalQuantity} */}
-                1</span>
-                {/* } */}
+              {totalQuantity >= 1 && <span className="badge rounded-pill badge-notification bg-danger">{totalQuantity}</span>}
+              
+              
+               
             </span>
             <ul
               className="dropdown-menu dropdown-menu-end shopping-cart"
               aria-labelledby="navbarDropdownMenuLink"
             >
-                ADD SHOPPINGCART COMPONENT HERE
+                <ShoppingCart />
             </ul>
           </div>
         </div>
