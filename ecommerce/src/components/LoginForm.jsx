@@ -24,7 +24,7 @@ const LoginForm = ({ Login, error }) => {
 
   return (
     <div className="base-container">
-      {/* {ERROR} */}
+      {(error != "") ? ( <div className='error'>{error}</div>) : ""}
       <div className="image">
         <img src={loginImg} alt="" />
       </div>

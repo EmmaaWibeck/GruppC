@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import './components/style.scss';
 import Views from './Views/Views';
 import Navbar from './components/Navbar';
 import LoginForm from './components/LoginForm';
@@ -21,12 +22,26 @@ function App() {
   //We're gonna pass through details to this actual login method
   const Login = details => {
     console.log(details); 
+
+    if (details.email === adminUser.email && details.password === adminUser.password) {
+      console.log ("Admin is logged in");
+      setUser({
+        name: details.name,
+        email: details.email
+      })
+    } else {
+      console.log("Details do not match!");
+      setError("Details do not match!")
+    }
     //Later, we'll be setting our user or our error. For now we just console.log this.
   }
 
   //We're gonna need also a logout function:
   const Logout = () => {
-    console.log("Logout"); 
+    setUser({
+      name: "",
+      email: ""
+    });
   }
 
   return (
@@ -38,7 +53,7 @@ function App() {
       ? (
         <div className="welcome">
           <h2>Welcome, <span>{user.name}</span></h2>
-          <button>Logout</button>
+          <button onClick={Logout} className="btn">Logout</button>
         </div>
       ) : (
         <LoginForm Login={Login} error={error} />
