@@ -3,41 +3,47 @@ import loginImg from '../img/avatar.png'
 import './style.scss'
 
 
-const LoginForm = () => {
+const LoginForm = ({ Login, error }) => {
 
-  const [formData, setFormData] = useState({
+  const [details, setDetails] = useState({
     email: '',
     password: ''
   })
+
+  const onClickHandler =e => {
+    e.preventDefault();
+    Login(details);
+  }
   
   const onChange = e => {
-    setFormData(state => ({
-      ...state,
-      [e.target.name]: e.target.value
+    setDetails(details => ({
+    ...details,
+    [e.target.name]: e.target.value
     }))
   }
 
   return (
     <div className="base-container">
+      {/* {ERROR} */}
       <div className="image">
         <img src={loginImg} alt="" />
       </div>
       <div className="header">Login</div>
       <div className="content">
-        <div className="form">
+        <form className="form">
         <div className="form-group">
             <label htmlFor="email">Email:</label>
-            <input value={formData.email} onChange={onChange} type="email" name="email" placeholder="email"/>
+            <input type="email" name="email" placeholder="email" onChange={onChange} value={details.email}/>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password:</label>
-            <input value={formData.password} onChange={onChange} type="password" name="password" placeholder="password"/>
+            <input type="password" name="password" placeholder="password" onChange={onChange} value={details.password}/>
           </div>
-        </div>
+        </form>
         <p>Not registerd? <a href="/register" className='link'> Register here!</a></p>
       </div>
       <div className="footer">
-        <button type="button" className="btn">Login</button>
+        <button onClick={onClickHandler} type="button" className="btn">Login</button>
       </div>
     </div>
   );

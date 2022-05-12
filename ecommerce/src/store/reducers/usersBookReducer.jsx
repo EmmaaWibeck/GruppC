@@ -8,6 +8,13 @@ const initState = {
 
 const usersBookReducer = (state = initState, action) => {
   switch(action.type) {
+
+    case actiontypes().usersBook.getUsersBook:
+      return {
+        ...state,
+        loading: true
+      }
+
     default:
       return state
   }
