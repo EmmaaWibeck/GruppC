@@ -6,7 +6,8 @@ import './style.scss'
 const RegisterForm = () => {
 
   const [formData, setFormData] = useState({
-    userName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: ''
   })
@@ -27,16 +28,20 @@ const RegisterForm = () => {
       <div className="content">
         <div className="form">
           <div className="form-group">
-            <label htmlFor="userName">Full name:</label>
-            <input value={formData.userName} onChange={onChange} type="text" id="userName" name="userName" placeholder="full name"/>
+            <label htmlFor="firstName">First name:</label>
+            <input value={formData.firstName} onChange={onChange} type="text" id="firstName" name="firstName" placeholder="Enter first name"/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last name:</label>
+            <input value={formData.lastName} onChange={onChange} type="text" id="lastName" name="lastName" placeholder="Enter last name"/>
           </div>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
-            <input value={formData.email} onChange={onChange} type="email" name="email" placeholder="email"/>
+            <input value={formData.email} onChange={onChange} type="email" name="email" placeholder="Enter email"/>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password:</label>
-            <input value={formData.password} onChange={onChange} type="password" name="password" placeholder="password"/>
+            <input value={formData.password} onChange={onChange} type="password" name="password" placeholder="Enter password"/>
           </div>
         </div>
         <p>Already registerd? <a href="/login"  className='link'> Login here!</a></p>
