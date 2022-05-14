@@ -13,6 +13,7 @@ const LoginForm = ({ Login, error }) => {
   const onClickHandler =e => {
     e.preventDefault();
     Login(details);
+    console.log(details)
   }
   
   const onChange = e => {

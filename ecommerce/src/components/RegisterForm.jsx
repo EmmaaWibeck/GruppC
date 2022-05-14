@@ -5,19 +5,20 @@ import './style.scss'
 
 const RegisterForm = () => {
 
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  })
-  
   const onChange = e => {
     setFormData(state => ({
       ...state,
       [e.target.name]: e.target.value
     }))
-  }
+  };
+  
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  });
+
 
   return (
     <div className="base-container">
@@ -47,7 +48,11 @@ const RegisterForm = () => {
         <p>Already registerd? <a href="/login"  className='link'> Login here!</a></p>
       </div>
       <div className="footer">
-        <button type="button" className="btn">Register</button>
+        <button type="button" className="btn"
+          onClick={() => {
+            console.log(formData)
+          }}
+        >Register</button>
       </div>
     </div>
   );
