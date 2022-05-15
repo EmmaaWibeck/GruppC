@@ -9,8 +9,13 @@ const actiontypes = () => {
             add: 'ADD_TO_CART',
             decrement: 'DECREMENT',
             removeOne: 'REMOVE_ONE',
-            
-             }
+        },
+        product: {
+            loadProductStart: 'LOAD_PRODUCT_START',
+            loadProductSuccess: 'LOAD_PRODUCT_SUCCESS',
+            loadProductFailure: 'LOAD_PRODUCT_FAILURE',
+            clearProduct: 'CLEAR_PRODUCT'      
+        }
     }  
 }
 
