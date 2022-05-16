@@ -14,8 +14,6 @@ const Products = () => {
     }, [dispatch])
 
 
-
-
     return (
         <>
         { loading && <Loader /> }

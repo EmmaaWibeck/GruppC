@@ -9,7 +9,7 @@ export const getProductCatalog = () => {
             type: actiontypes().productCatalog.getProductCatalog
         })
         try {
-            const res = await axios.get('http://localhost:9090/api/products')
+            const res = await axios.get('http://localhost:9999/api/products')
             console.log(res.data)
             if(res.status === 200) {
                 dispatch(getProductCatalogSuccess(res.data))
