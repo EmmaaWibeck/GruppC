@@ -11,7 +11,7 @@ const actiontypes = () => {
             removeOne: 'REMOVE_ONE',
 
             clearCart: 'CLEAR_CART'
-             }
+            
         },
         product: {
             loadProductStart: 'LOAD_PRODUCT_START',
