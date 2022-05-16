@@ -9,7 +9,7 @@ const actiontypes = () => {
             add: 'ADD_TO_CART',
             decrement: 'DECREMENT',
             removeOne: 'REMOVE_ONE',
-            
+            clearCart: 'CLEAR_CART'
              }
     }  
 }
