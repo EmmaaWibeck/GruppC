@@ -1,7 +1,7 @@
-import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import ShoppingCart from './shoppingCart/ShoppingCart'
 import { useSelector } from 'react-redux'
+import loginImg from '../img/avatar.png'
 
 
 const Navbar = () => {
@@ -9,7 +9,7 @@ const Navbar = () => {
   const totalQuantity = useSelector(state => state.cartReducer.totalQuantity)
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark text-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-light">
       {/* <!-- Container wrapper start --> */}
       <div className="container-fluid">
         {/* <!-- Toggle button --> */}
@@ -28,14 +28,18 @@ const Navbar = () => {
         {/* <!-- Collapsible wrapper --> */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           {/* <!-- Navbar brand --> */}
-            <Link to="/" className='navbar-brand mt-2 mt-lg-0'>LOGO</Link>
+            <Link to="/" className='navbar-brand mt-2 mt-lg-0'>
+            <img className='logo' src={loginImg} alt="Logotype" />
+            </Link>
           {/* <!-- Left links start --> */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li><NavLink to="/" className="nav-item nav-link p-1">Home</NavLink></li>
+            {/* <li><NavLink to="/" className="nav-item nav-link p-1">Home</NavLink></li> */}
             <li><NavLink to="/products" className="nav-item nav-link p-1">Products</NavLink></li>
             <li><NavLink to="/login" className="nav-item nav-link p-1">Login</NavLink></li>
             <li><NavLink to="/register" className="nav-item nav-link p-1">Register</NavLink></li>
             <li><NavLink to="/admin" className="nav-item nav-link p-1">Admin</NavLink></li>
+            <li><NavLink to="/orders" className="nav-item nav-link p-1">Orders</NavLink></li>
+
           </ul>
           {/* <!-- Left links end --> */}
         </div>
@@ -54,15 +58,14 @@ const Navbar = () => {
             >
               <i className="fas fa-shopping-cart"></i>
               {totalQuantity >= 1 && <span className="badge rounded-pill badge-notification bg-danger">{totalQuantity}</span>}
-              
-              
-               
+
             </span>
             <ul
               className="dropdown-menu dropdown-menu-end shopping-cart"
               aria-labelledby="navbarDropdownMenuLink"
             >
-                <ShoppingCart />
+              <ShoppingCart />
+
             </ul>
           </div>
         </div>
