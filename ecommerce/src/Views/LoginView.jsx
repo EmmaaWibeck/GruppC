@@ -1,65 +1,36 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react'
 import LoginForm from '../components/LoginForm'
+import RegisterForm from '../components/RegisterForm'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 
 const LoginView = () => {
 
-  const adminUser = {
-    email: "admin@admin.com",
-    password: "admin123"
-  }
-  // This where we get our user data. Once we've logged in this data is gonna be set.
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: ""
-  });
-  // Error string because what the error is gonna to is to catch if or not our details are correct. It has a message in there to dislay
-  const [error, setError] = useState("");
+  const navigate = useNavigate()
 
-  //This function is going to be called when we're to log in.
-  //We're gonna pass through details to this actual login method
-  const Login = details => {
-    console.log(details); 
+  // const user = useSelector(state => state.auth.token)
+  //const { state } = useLocation()
 
-    if (details.email === adminUser.email && details.password === adminUser.password) {
-      console.log ("Admin is logged in");
-      setUser({
-        firstName: details.firstName,
-        lastName: details.lastName,
-        email: details.email
-      })
-    } else {
-      console.log("Details do not match!");
-      setError("You've just entered incorrect information!")
-    }
-    //Later, we'll be setting our user or our error. For now we just console.log this.
-  }
+  const [login, setLogin] = useState(true)
 
-  //We're gonna need also a logout function:
-  const Logout = () => {
-    setUser({
-      name: "",
-      email: ""
-    });
-  }
-
+  useEffect(() => {
+    //if(user) {
+      // navigate(state?.from || "/")
+     // try {navigate(state.from)} 
+     // catch {navigate("/")}
+    //}
+  })
+ // the line before this comment was like   }, [user, navigate])  but I change it to stop showing error message
 
   return (
-    <>
-      {(user.email !== "")
-      ? (
-        <div className="welcome">
-          <h2>Welcome, <span>{user.name}</span></h2>
-          <button onClick={Logout} className="btn">Logout</button>
-        </div>
-      ) : (
-        <LoginForm Login={Login} error={error} />
-      )}
-
-    </>
+    <div className='login-view'>
+      { login
+        ? <LoginForm setLogin={setLogin} />
+        : <RegisterForm setLogin={setLogin} />
+      }
+    </div>
   )
 }
 
 export default LoginView
-

@@ -1,61 +1,65 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerUser } from '../store/actions/authActions'
+
 import loginImg from '../img/avatar.png'
-import './style.scss'
+import './style.css'
 
+const RegisterForm = ({setLogin}) => {
 
-const RegisterForm = () => {
+  const dispatch = useDispatch()
+
+  const loading = useSelector(state => state.auth.loading)
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  })
 
   const onChange = e => {
     setFormData(state => ({
       ...state,
       [e.target.name]: e.target.value
     }))
-  };
-  
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  });
+  }
 
+  const handleSub = e => {
+    e.preventDefault()
+    dispatch(registerUser(formData))
+  }
 
   return (
     <div className="base-container">
       <div className="image">
         <img src={loginImg} alt="" />
       </div>
-      <div className="header">Register</div>
-      <div className="content">
-        <div className="form">
-          <div className="form-group">
-            <label htmlFor="firstName">First name:</label>
-            <input value={formData.firstName} onChange={onChange} type="text" id="firstName" name="firstName" placeholder="Enter first name"/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="lastName">Last name:</label>
-            <input value={formData.lastName} onChange={onChange} type="text" id="lastName" name="lastName" placeholder="Enter last name"/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input value={formData.email} onChange={onChange} type="email" name="email" placeholder="Enter email"/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input value={formData.password} onChange={onChange} type="password" name="password" placeholder="Enter password"/>
-          </div>
+      <h2 className="header">Registeration</h2>
+      <form onSubmit={handleSub} className="form content">
+        <div className="form-group">
+          <label htmlFor="firstName">First Name: </label>
+          <input value={formData.firstName} onChange={onChange} type="text" id='firstName' name='firstName' placeholder="enter first name" />
         </div>
-        <p>Already registerd? <a href="/login"  className='link'> Login here!</a></p>
-      </div>
-      <div className="footer">
-        <button type="button" className="btn"
-          onClick={() => {
-            console.log(formData)
-          }}
-        >Register</button>
-      </div>
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name: </label>
+          <input value={formData.lastName} onChange={onChange} type="text" id='lastName' name='lastName' placeholder="enter last name"  />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email: </label>
+          <input value={formData.email} onChange={onChange} type="email" id='email' name='email' placeholder="enter email"  />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password: </label>
+          <input value={formData.password} onChange={onChange} type="password" id='password' name='password' placeholder="enter password"  />
+        </div>
+        <p>Already a member? <span onClick={() => setLogin(true)} className='link'>Login here!</span></p>
+        <div>
+          <button className='btn'>{loading ? 'Loading...' : 'Sign up'}</button>
+        </div>
+      </form>
     </div>
-  );
+  )
 }
 
 export default RegisterForm

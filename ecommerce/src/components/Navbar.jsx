@@ -1,6 +1,12 @@
+import { useSelector, useDispatch } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
+import { logoutUser } from '../store/actions/authActions'
 
 const Navbar = () => {
+
+  const dispatch = useDispatch()
+
+  const isAuth = useSelector(state => state.auth.token)
     
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark text-light">
@@ -26,9 +32,14 @@ const Navbar = () => {
           {/* <!-- Left links start --> */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li><NavLink to="/" className="nav-item nav-link p-1">Home</NavLink></li>
-            <li><NavLink to="/login" className="nav-item nav-link p-1">Login</NavLink></li>
-            <li><NavLink to="/register" className="nav-item nav-link p-1">Register</NavLink></li>
-            <li><NavLink to="/admin" className="nav-item nav-link p-1">Admin</NavLink></li>
+            { isAuth      
+              ? (<>
+                {/* <li><NavLink to="/create" className="nav-link" >Create</NavLink></li>'' */}
+                <li><Link onClick={() => dispatch(logoutUser())} to="/login" className="nav-item nav-link p-1">Logout</Link></li>
+                </>)
+
+              : <li><NavLink to="/login" className="nav-item nav-link p-1" >Login</NavLink></li>
+            }
           </ul>
           {/* <!-- Left links end --> */}
         </div>
@@ -58,14 +69,14 @@ const Navbar = () => {
                 loading="lazy"
               />
             </Link>
-            <ul
+{/*             <ul
               className="dropdown-menu dropdown-menu-end"
               aria-labelledby="navbarDropdownMenuAvatar"
             >
               <li><NavLink to="/" className="dropdown-item">My profile</NavLink></li>
               <li><NavLink to="/" className="dropdown-item">Settings</NavLink></li>
               <li><NavLink to="/" className="dropdown-item">Logout</NavLink></li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         {/* <!-- Right elements end --> */}

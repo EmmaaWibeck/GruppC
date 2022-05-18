@@ -1,53 +1,54 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { loginUser } from '../store/actions/authActions'
+
 import loginImg from '../img/avatar.png'
-import './style.scss'
+import './style.css'
 
+const LoginForm = ({setLogin}) => {
+  
+  const dispatch = useDispatch()
+  const loading = useSelector(state => state.auth.loading)
 
-const LoginForm = ({ Login, error }) => {
-
-  const [details, setDetails] = useState({
+  const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
 
-  const onClickHandler =e => {
-    e.preventDefault();
-    Login(details);
-    console.log(details)
-  }
-  
   const onChange = e => {
-    setDetails(details => ({
-    ...details,
-    [e.target.name]: e.target.value
+    setFormData(state => ({
+      ...state,
+      [e.target.name]: e.target.value
     }))
+  }
+
+  const handleSub = e => {
+    e.preventDefault()
+    dispatch(loginUser(formData))
   }
 
   return (
     <div className="base-container">
-      {(error !== "") ? ( <div className='error'>{error}</div>) : ""}
       <div className="image">
         <img src={loginImg} alt="" />
       </div>
-      <div className="header">Login</div>
-      <div className="content">
-        <form className="form">
+      <h2 className="header">Login</h2>
+      <form onSubmit={handleSub} className="form content">
         <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input type="email" name="email" placeholder="email" onChange={onChange} value={details.email}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input type="password" name="password" placeholder="password" onChange={onChange} value={details.password}/>
-          </div>
-        </form>
-        <p>Not registerd? <a href="/register" className='link'> Register here!</a></p>
-      </div>
-      <div className="footer">
-        <button onClick={onClickHandler} type="button" className="btn">Login</button>
-      </div>
+          <label htmlFor="email">Email: </label>
+          <input value={formData.email} onChange={onChange} type="email" id='email' name='email' placeholder="enter email" />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password: </label>
+          <input value={formData.password} onChange={onChange} type="password" id='password' name='password' placeholder="enter password"/>
+        </div>
+        <p>Not Registered? <span onClick={() => setLogin(false)} className='link'>Register here!</span></p>
+        <button className='btn'>{loading ? 'Loading...' : 'Login'}
+        </button>
+      </form>
     </div>
-  );
+  )
 }
 
 export default LoginForm

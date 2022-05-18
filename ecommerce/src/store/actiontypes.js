@@ -1,11 +1,12 @@
 const actiontypes = () => {
   return {
-    usersBook: {
-      getUsersBook: 'GET_USERS_BOOK',
-      getUsersBookSuccess: 'GET_USERS_BOOK_SUCCESS',
-      getUsersBookFailure: 'GET_USERS_BOOK_FAILURE'
+    auth: {
+      loading: 'AUTH_LOADING',
+      authFailure: 'AUTH_FAILURE',
+      authSuccess: 'AUTH_SUCCESS',
+      logout: 'LOGOUT'
     }
   }
 }
 
-export default actiontypes
+export default actiontypes;
