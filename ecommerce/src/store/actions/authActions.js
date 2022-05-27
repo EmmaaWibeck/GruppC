@@ -1,6 +1,5 @@
 import axios from 'axios'
 import actiontypes from '../actiontypes'
-// import jwt from 'jsonwebtoken'
 import jwt_decode from 'jwt-decode'
 
 const apiCall = (url, user, dispatch) => {
@@ -11,7 +10,6 @@ const apiCall = (url, user, dispatch) => {
   })
   .catch(err => dispatch(authFailure(err.message)))
 }
-
 
 export const registerUser = (user) => {
   return dispatch => {

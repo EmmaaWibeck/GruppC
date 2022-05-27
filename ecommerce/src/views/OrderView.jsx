@@ -12,9 +12,8 @@ const OrderView = () => {
       <h1>Order History</h1>
       </div>
 
-      { loading && <p>Loading...</p>}
-      { orders.map(order => <OrderCard key={order.id} post={order} />) }
-
+        { loading && <p>Loading...</p>}
+        { orders.map(order => <OrderCard key={order.id} post={order} />) }
 
       <div>
         {/* <OrderCard /> */}

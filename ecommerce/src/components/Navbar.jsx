@@ -2,17 +2,13 @@ import { Link, NavLink } from 'react-router-dom'
 import ShoppingCart from './shoppingCart/ShoppingCart'
 import { useSelector, useDispatch } from 'react-redux'
 import loginImg from '../img/avatar.png'
-//test auth, useDispatch oxå auth
 import { logoutUser } from '../store/actions/authActions'
 
 
 const Navbar = () => {
 
-  //test auth
   const dispatch = useDispatch()
   const isAuth = useSelector(state => state.auth.token)
-
-
   const totalQuantity = useSelector(state => state.cartReducer.totalQuantity)
 
   return (
@@ -44,6 +40,7 @@ const Navbar = () => {
           { isAuth      
           ? (<>
             <li><NavLink to="/admin" className="nav-item nav-link p-1">Admin</NavLink></li>
+            <li className='nav-item'><Link onClick={() => dispatch(logoutUser())} to="/" className="nav-link">Logout</Link></li>
             </>)
           : (<>  
             <li><NavLink to="/products" className="nav-item nav-link p-1">Products</NavLink></li>
@@ -56,7 +53,6 @@ const Navbar = () => {
         </div>
 
         {/* <!-- Right elements start --> */}
-        {/* Jockes code from lession 9, start*/}
         <div className="d-flex align-items-center">
 
           <div className="dropdown">
@@ -80,7 +76,6 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-        {/* Jockes code from lession 9, end*/}
         {/* <!-- Right elements end --> */}
       </div>
       {/* <!-- Container wrapper end --> */}

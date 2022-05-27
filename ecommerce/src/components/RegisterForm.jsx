@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerUser } from '../store/actions/authActions'
-
 import loginImg from '../img/avatar.png'
 
 const RegisterForm = ({setLogin}) => {
 
   const dispatch = useDispatch()
-
   const loading = useSelector(state => state.auth.loading)
 
   const [formData, setFormData] = useState({

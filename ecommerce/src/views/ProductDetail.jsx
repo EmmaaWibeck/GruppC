@@ -12,11 +12,9 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(getProductById(id))
-
     return () => {
       dispatch(clearProduct())
     }
-
   }, [dispatch, id])
 
   const { loading, data: product, error } = useSelector(state => state.product)
@@ -48,11 +46,9 @@ const ProductDetails = () => {
     )
 
   return (
-    <div>
-      
+    <div>      
       {template}
       {loading && <p>Loading... </p>}
-      
     </div>
   )
 }

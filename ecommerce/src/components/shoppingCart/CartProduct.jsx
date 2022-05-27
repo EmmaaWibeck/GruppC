@@ -6,7 +6,6 @@ const CartProduct = ({ item }) => {
   const dispatch = useDispatch()
 
 
-
   return (
     <div className='d-flex justify-content-between align-items-center p-2'>
       <div className='d-flex align-items-center'>
