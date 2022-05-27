@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { loginUser } from '../store/actions/authActions'
 
+import './style.css'
 import loginImg from '../img/avatar.png'
 
 
@@ -43,8 +44,8 @@ const LoginForm = ({setLogin}) => {
           <label htmlFor="password">Password: </label>
           <input value={formData.password} onChange={onChange} type="password" id='password' name='password' placeholder="enter password"/>
         </div>
-        <p>Not Registered? <span onClick={() => setLogin(false)} className='link'>Register here!</span></p>
-        <button className='btn'>{loading ? 'Loading...' : 'Login'}
+        <p className='p-forms'>Not Registered? <span onClick={() => setLogin(false)} className='link'>Register here!</span></p>
+        <button className='btn-forms'>{loading ? 'Loading...' : 'Login'}
         </button>
       </form>
     </div>
