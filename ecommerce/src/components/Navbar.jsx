@@ -44,12 +44,11 @@ const Navbar = () => {
           { isAuth      
           ? (<>
             <li><NavLink to="/admin" className="nav-item nav-link p-1">Admin</NavLink></li>
-            <li><NavLink to="/products" className="nav-item nav-link p-1">Products</NavLink></li>
-            <li><NavLink to="/orders" className="nav-item nav-link p-1">Orders</NavLink></li>
             </>)
           : (<>  
             <li><NavLink to="/products" className="nav-item nav-link p-1">Products</NavLink></li>
             <li><NavLink to="/login" className="nav-item nav-link p-1">Login</NavLink></li>
+            <li><NavLink to="/orders" className="nav-item nav-link p-1">Orders</NavLink></li>
             </>)
             }
           </ul>
