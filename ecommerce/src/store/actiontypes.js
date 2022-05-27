@@ -18,6 +18,18 @@ const actiontypes = () => {
             loadProductSuccess: 'LOAD_PRODUCT_SUCCESS',
             loadProductFailure: 'LOAD_PRODUCT_FAILURE',
             clearProduct: 'CLEAR_PRODUCT'      
+        },
+        auth: {
+            loading: 'AUTH_LOADING',
+            authFailure: 'AUTH_FAILURE',
+            authSuccess: 'AUTH_SUCCESS',
+            logout: 'LOGOUT'
+        },
+        orders: {
+            setOrders: 'SET_ORDERS',
+            loading: 'ORDERS_LOADING',
+            failure: 'ORDERS_FAILURE',
+            // addNewOrder: 'ADD_NEW_ORDER'
         }
 
     }  

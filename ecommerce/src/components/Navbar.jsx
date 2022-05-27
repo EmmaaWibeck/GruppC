@@ -1,10 +1,17 @@
 import { Link, NavLink } from 'react-router-dom'
 import ShoppingCart from './shoppingCart/ShoppingCart'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import loginImg from '../img/avatar.png'
+//test auth, useDispatch oxå auth
+import { logoutUser } from '../store/actions/authActions'
 
 
 const Navbar = () => {
+
+  //test auth
+  const dispatch = useDispatch()
+  const isAuth = useSelector(state => state.auth.token)
+
 
   const totalQuantity = useSelector(state => state.cartReducer.totalQuantity)
 
@@ -33,13 +40,17 @@ const Navbar = () => {
             </Link>
           {/* <!-- Left links start --> */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* <li><NavLink to="/" className="nav-item nav-link p-1">Home</NavLink></li> */}
+
+          { isAuth      
+          ? (<>
+            <li><NavLink to="/admin" className="nav-item nav-link p-1">Admin</NavLink></li>
+            </>)
+          : (<>  
             <li><NavLink to="/products" className="nav-item nav-link p-1">Products</NavLink></li>
             <li><NavLink to="/login" className="nav-item nav-link p-1">Login</NavLink></li>
-            <li><NavLink to="/register" className="nav-item nav-link p-1">Register</NavLink></li>
-            <li><NavLink to="/admin" className="nav-item nav-link p-1">Admin</NavLink></li>
             <li><NavLink to="/orders" className="nav-item nav-link p-1">Orders</NavLink></li>
-
+            </>)
+            }
           </ul>
           {/* <!-- Left links end --> */}
         </div>

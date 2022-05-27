@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const OrderCard = () => {
+const OrderCard = ({ order }) => {
   return (
     <div>
-        <div className='mt-5'>
-          <h4>List of orders</h4>
-          <p>Here is the OrderCard component</p>
-        </div>
+      <Link to={`/orders/${order._id}`}>
+        <h2>{order._id}</h2>
+        <p>{order.createdAt}</p>
+      </Link>
     </div>
   )
 }
